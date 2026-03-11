@@ -1,6 +1,7 @@
 package es.unican.is2.SegurosCommon;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Clase que representa un seguro de coche.
@@ -116,7 +117,45 @@ public class Seguro {
 	 *         0 si el seguro todavía no está en vigor (no se ha alcanzado su fecha de inicio)
      */
 	public double precio() {
-		return 0;
+		LocalDate hoy = LocalDate.now();
+		
+		//seguro no esta en vigor
+		if (fechaInicio == null || hoy.isBefore(fechaInicio)) {
+			return 0;
+		}
+		
+		double base = 0.0;
+		
+		//cobertura
+		if (cobertura != null) {
+			switch (cobertura) {
+			case TERCEROS:
+				base = 400.0;
+				break;
+			case TERCEROS_LUNAS:
+				base = 600.0;
+				break;
+			case TODO_RIESGO:
+				base = 1000.0;
+				break;
+			}
+		}
+		
+		//potencia
+		double calculado = base;
+		if (potencia >= 90 && potencia <= 110) {
+			calculado += base * 0.05;
+		} else if (potencia > 110) {
+			calculado += base * 0.20;
+		}
+		
+		//oferta
+		long contratotiempo = ChronoUnit.YEARS.between(fechaInicio, hoy);
+		if (contratotiempo == 0) {
+			calculado -= (calculado * 0.20);
+		}
+		
+		return calculado;
 	}
 	
 }

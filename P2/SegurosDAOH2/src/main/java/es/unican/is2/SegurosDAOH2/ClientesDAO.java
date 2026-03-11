@@ -10,11 +10,12 @@ import java.util.List;
 
 import es.unican.is2.SegurosCommon.Cliente;
 import es.unican.is2.SegurosCommon.DataAccessException;
+import es.unican.is2.SegurosCommon.IClientesDAO;
+import es.unican.is2.SegurosCommon.Seguro;
 
 
 public class ClientesDAO implements IClientesDAO {
 
-	@Override
 	public Cliente creaCliente(Cliente c) throws DataAccessException {
 		String insertStatement = String.format(
 				"insert into Clientes(dni, nombre, minusvalia) values ('%s', '%s', '%b')",
@@ -25,7 +26,6 @@ public class ClientesDAO implements IClientesDAO {
 		return c;
 	}
 
-	@Override
 	public Cliente cliente(String dni) throws DataAccessException {
 		Cliente result = null; 
 		Connection con = H2ServerConnectionManager.getConnection();
@@ -45,7 +45,6 @@ public class ClientesDAO implements IClientesDAO {
 		return result;
 	}
 
-	@Override
 	public Cliente actualizaCliente(Cliente nuevo) throws DataAccessException {
 		Cliente cliente = null;
 		Cliente old = cliente(nuevo.getDni());
@@ -70,7 +69,6 @@ public class ClientesDAO implements IClientesDAO {
 		return cliente;
 	}
 
-	@Override
 	public Cliente eliminaCliente(String dni) throws DataAccessException {
 		Cliente cliente = cliente(dni);
 		Connection con = H2ServerConnectionManager.getConnection();
@@ -79,7 +77,6 @@ public class ClientesDAO implements IClientesDAO {
 		return cliente;
 	}
 
-	@Override
 	public List<Cliente> clientes() throws DataAccessException {
 		List<Cliente> clientes = new LinkedList<Cliente>();
 		Connection con = H2ServerConnectionManager.getConnection(); 

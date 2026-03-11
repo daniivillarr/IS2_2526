@@ -15,6 +15,13 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.border.LineBorder;
 
+import es.unican.is2.SegurosCommon.Cliente;
+import es.unican.is2.SegurosCommon.DataAccessException;
+import es.unican.is2.SegurosCommon.IGestionClientes;
+import es.unican.is2.SegurosCommon.IGestionSeguros;
+import es.unican.is2.SegurosCommon.IInfoSeguros;
+import es.unican.is2.SegurosCommon.Seguro;
+
 import java.awt.Color;
 import javax.swing.JButton;
 

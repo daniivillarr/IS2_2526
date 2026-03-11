@@ -78,7 +78,11 @@ public class Cliente {
      * todos los seguros a su nombre
      */
     public double totalSeguros() {
-        return 0;
+    	double total = 0.0;
+    	for (Seguro seguro: seguros) {
+    		total += seguro.precio();
+    	}
+        return total;
     }
 
 }

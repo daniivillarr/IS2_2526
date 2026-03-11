@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="SegurosBussines/src/main/java"/>
+	<classpathentry kind="src" path="SegurosCommon/src/main/java"/>
+	<classpathentry kind="src" path="SegurosDAOH2/src/main/java"/>
+	<classpathentry kind="src" path="SegurosGUI/src/main/java"/>
+	<classpathentry kind="src" path="SegurosMain/src/main/java"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
