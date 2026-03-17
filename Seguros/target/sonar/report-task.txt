@@ -1,0 +1,6 @@
+projectKey=es.unican.is2:Seguros
+serverUrl=http://localhost:9000
+serverVersion=26.3.0.120487
+dashboardUrl=http://localhost:9000/dashboard?id=es.unican.is2%3ASeguros
+ceTaskId=1f328ccc-53bb-45f5-85db-c14faaea8230
+ceTaskUrl=http://localhost:9000/api/ce/task?id=1f328ccc-53bb-45f5-85db-c14faaea8230
