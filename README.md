@@ -1,1 +1,2 @@
-# IS2_2526
+# Daniel Villar Corro
+# Hugo Gonzalez Revuelta
