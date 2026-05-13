@@ -15,8 +15,11 @@ public class Conductor {
 	private String apellido2;
 	private String dire;
 
+	// WMC = 5 (1 base + 1 por el if + 3 por los operadores ||)
+	// CCog = 4 (1 por el if + 3 por los operadores ||. Nivel de anidamiento 0)
 	public Conductor(String dni, String nombre, String apellido1,
 			String apellido2, String direccion) {
+		// WMC: +1 (if), +3 (||) | CCog: +1 (if), +3 (||)
 		if (dni == null || nombre == null || apellido1 == null || direccion == null) {
 			throw new IllegalArgumentException();
 		}
@@ -27,43 +30,58 @@ public class Conductor {
 		this.dire = direccion;
 	}
 
+	// WMC = 1 (base). CCog = 0
 	public String dni() {
 		return dni;
 	}
 
+	// WMC = 1 (base). CCog = 0
 	public String getDni() {
 		return dni;
 	}
 
+	// WMC = 1 (base). CCog = 0
 	public String getNombre() {
 		return nombre;
 	}
 
+	// WMC = 1 (base). CCog = 0
 	public String getApellido1() {
 		return apellido1;
 	}
 
+	// WMC = 1 (base). CCog = 0
 	public String apellido2() {
 		return apellido2;
 	}
 
+	// WMC = 1 (base). CCog = 0
 	public String getDire() {
 		return dire;
 	}
 
+	// WMC = 6 (1 base + 1 for + 3 cases del switch + 1 if)
+	// CCog = 6
 	public double sueldo() {
 		double sueldoTransportes = 0;
-		for (Transporte t : transportes) {
+		
+		// WMC: +1 (for) | CCog: +1 (for, aumenta anidamiento a 1)
+		for (Transporte t : transportes) { 
 			double sueldoExtraTransporte = 0.0;
-			switch (t.categoria()) {
-				case Mercancias:
+			
+			// WMC: 0 (el switch en sí no suma, suman sus cases) 
+			// CCog: +2 (+1 por la estructura switch, +1 por estar anidado nivel 1)
+			switch (t.categoria()) { 
+				case Mercancias: // WMC: +1 (case)
 					sueldoExtraTransporte = t.ton() * 2;
 					break;
-				case MercanciasPeligrosas:
+				case MercanciasPeligrosas: // WMC: +1 (case)
 					sueldoExtraTransporte = t.ton() * 2 + 50;
 					break;
-				case Personas:
-					if (t.getPersonas() < 10)
+				case Personas: // WMC: +1 (case)
+					// WMC: +1 (if)
+					// CCog: +3 (+1 por el if, +2 por estar anidado nivel 2: dentro de un for y un switch)
+					if (t.getPersonas() < 10) 
 						sueldoExtraTransporte = t.horas() * 0.5;
 					else
 						sueldoExtraTransporte = t.horas();
@@ -74,6 +92,7 @@ public class Conductor {
 		return 700 + sueldoTransportes;
 	}
 
+	// WMC = 1 (base). CCog = 0
 	public void anhadeTransporte(Transporte t) {
 		transportes.add(t);
 	}
